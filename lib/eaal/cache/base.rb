@@ -15,10 +15,10 @@ module EAAL
     # NoCache class
     # dummy class which is used for non-caching behaviour (default)
     class NoCache
-      def load(userid, apikey, scope, name, args)
+      def load(keyid, vcode, scope, name, args)
         false
       end
-      def save(userid, apikey, scope, name, args, xml)
+      def save(keyid, vcode, scope, name, args, xml)
       end
     end
     

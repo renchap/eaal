@@ -16,7 +16,7 @@ the game Eve Online
 Usage:
 Initialize the API Object
 
-  api = EAAL::API.new("my Userid", "my API key"[, "scope for requests"])
+  api = EAAL::API.new("my key id", "my verification code"[, "scope for requests"])
 
 the scope is the one used for the API requests, 
 ex. account/char/corp/eve/map/server
@@ -30,20 +30,20 @@ can be used to do read the api result
 
 Example 1, getting a list of characters on the account:
 
-  api = EAAL::API.new("my userid", "my API key")
+  api = EAAL::API.new("my key id", "my verification code")
   result = api.Characters
   result.characters.each{|character|
       puts character.name
   }
 
 Example 2, getting the id for a given character name
- api = EAAL::API.new("my userid", "my API key")
+ api = EAAL::API.new("my key id", "my verification code")
  api.scope = "eve"
  result = api.CharacterID(:names => "Peter Powers")
  puts result.characters.first.characterID
 
 Example 3, Example 2 in short
- puts EAAL::Api.new("my userid", "my API key", "eve").CharacterID(:names => "Peter Powers").characters.name
+ puts EAAL::Api.new("my key id", "my verification code", "eve").CharacterID(:names => "Peter Powers").characters.name
  
 
 Errors returned by the EVE API are handled a bit unique,
@@ -67,7 +67,7 @@ if you dont give a path it defaults to $HOME/.eaal/cache
 Example 5, doing a cached request
   require 'eaal'
   EAAL.cache = EAAL::Cache::FileCache.new               # set cache
-  api = EAAL::API.new("my userid", "my API key")        # initialize API object
+  api = EAAL::API.new("my key id", "my verification code")        # initialize API object
   charid = api.Characters.characters.first.characterID  # get the characterID of the first character on account
   api.scope = "char"                                    # set scope to "char"
   kills = api.Killlog("characterID" => charid).kills    # request Killlog API Page
@@ -93,6 +93,7 @@ special thanks go to James "Ix_Forres" Harrison for his code cleanups and
 his memcache cache handler
 thanks also go to Davide Rambaldi and Ian Delahorno who contributed
 several bug fixes.
+
 == LICENSE:
 
 (The MIT License)

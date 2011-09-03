@@ -94,13 +94,13 @@ class TestEaal < Test::Unit::TestCase
     @api.scope = 'account'
 
     # store to cache
-    assert_equal EAAL.cache.save(@api.userid,@api.key,@api.scope,'Characters','',xml), "STORED\r\n"
+    assert_equal EAAL.cache.save(@api.keyid,@api.vcode,@api.scope,'Characters','',xml), "STORED\r\n"
 
     # check key in cache
-    assert_equal EAAL.cache.key(@api.userid,@api.key,@api.scope,'Characters',''), "testtestaccountCharacters"
+    assert_equal EAAL.cache.key(@api.keyid,@api.vcode,@api.scope,'Characters',''), "testtestaccountCharacters"
 
     # load from cache
-    assert_equal EAAL.cache.load(@api.userid,@api.key,@api.scope,'Characters',''), xml
+    assert_equal EAAL.cache.load(@api.keyid,@api.vcode,@api.scope,'Characters',''), xml
 
     # FIXME high level tests
     # Should store to cache
