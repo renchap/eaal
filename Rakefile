@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/lib/eaal.rb'
 
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
+Hoe.plugin :gemspec
 $hoe = Hoe.spec 'eaal' do |p|
   p.developer('Peter Petermann', 'ppetermann80@googlemail.com')
   p.changes              = p.paragraphs_of("History.txt", 0..1).join("\n\n")
