@@ -96,6 +96,12 @@ module EAAL
             elements = (xml/"eveapi/result").first.containers
             elements.each {|element|
                 el = EAAL::Result::ResultElement.parse_element(prefix, element)
+                # add attributes to element
+                if el.kind_of?(EAAL::Result::ResultElement) and el.value.kind_of?(EAAL::Result::ResultContainer)
+                  el.attribs.each do |name, value|
+                    el.add_element(name, value)
+                  end
+                end
                 members << el.name
                 if el.kind_of? EAAL::Rowset::RowsetBase
                     values.merge!({el.name => el})

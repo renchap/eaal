@@ -75,6 +75,15 @@ class TestEaal < Test::Unit::TestCase
     assert_equal @api.CorporationSheet(:corporationID => 150212025).walletDivisions[0].description, "Master Wallet"
   end
 
+  # test for ApiKeyInfo
+  def test_api_key_info
+    @api.scope = "account"
+    assert_equal @api.ApiKeyInfo.key.characters.first.characterID, '12345'
+    pp @api.ApiKeyInfo
+    assert_equal @api.ApiKeyInfo.key.type, 'Corporation'
+  end
+
+
   # Test to ensure Memcached works
   def test_memcached
     # FIXME must check if memcache server is installed... (binary memcache)
